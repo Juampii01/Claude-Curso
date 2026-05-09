@@ -7,7 +7,7 @@ import { SidebarNav } from "./sidebar-nav";
 export function Sidebar() {
   return (
     <aside
-      aria-label="Sidebar navigation"
+      aria-label="Navegación lateral"
       className="bg-sidebar text-sidebar-foreground border-sidebar-border sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r lg:flex"
     >
       <div className="flex h-14 items-center px-5">

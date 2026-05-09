@@ -21,7 +21,7 @@ export function ThemeToggle() {
           <Button
             variant="ghost"
             size="icon-sm"
-            aria-label={`Toggle theme (current: ${theme ?? "system"})`}
+            aria-label={`Cambiar tema (actual: ${theme ?? "sistema"})`}
           />
         }
       >
@@ -30,13 +30,13 @@ export function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          <Sun /> Light
+          <Sun /> Claro
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <Moon /> Dark
+          <Moon /> Oscuro
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          <Monitor /> System
+          <Monitor /> Sistema
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

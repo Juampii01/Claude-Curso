@@ -37,19 +37,19 @@ export function HomeDashboard() {
       <Card className="lg:col-span-3">
         <CardHeader>
           <CardDescription className="tracking-widest uppercase">
-            Plan progress
+            Progreso del plan
           </CardDescription>
           <div className="flex items-baseline gap-2">
             <span className="text-4xl font-semibold tabular-nums">
               {overall}%
             </span>
             <span className="text-muted-foreground text-sm">
-              across {modules.length} modules
+              en {modules.length} módulos
             </span>
           </div>
         </CardHeader>
         <CardContent>
-          <Progress value={overall} aria-label="Overall plan progress" />
+          <Progress value={overall} aria-label="Progreso global del plan" />
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {modules.map((m) => {
               const pct = modulePercent(m, progress);
@@ -60,7 +60,7 @@ export function HomeDashboard() {
                     className="hover:bg-muted/40 group focus-visible:ring-ring -m-2 block rounded-lg p-2 transition-colors focus-visible:ring-2 focus-visible:outline-none"
                   >
                     <p className="text-muted-foreground text-[10px] font-medium tracking-widest uppercase">
-                      Module {String(m.number).padStart(2, "0")}
+                      Módulo {String(m.number).padStart(2, "0")}
                     </p>
                     <p className="mt-0.5 text-sm font-medium group-hover:text-foreground">
                       {m.title}
@@ -90,7 +90,7 @@ export function HomeDashboard() {
       <Card className="lg:col-span-2">
         <CardHeader>
           <CardDescription className="tracking-widest uppercase">
-            Active module
+            Módulo activo
           </CardDescription>
           {active ? (
             <CardTitle className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export function HomeDashboard() {
             </CardTitle>
           ) : (
             <CardTitle className="text-muted-foreground">
-              No modules yet
+              Aún no hay módulos
             </CardTitle>
           )}
         </CardHeader>
@@ -112,15 +112,15 @@ export function HomeDashboard() {
               <div className="mt-5">
                 <Progress
                   value={modulePercent(active, progress)}
-                  aria-label={`${active.title} progress`}
+                  aria-label={`Progreso de ${active.title}`}
                 />
                 <div className="text-muted-foreground mt-2 flex items-center justify-between text-xs">
-                  <span>~{active.estimatedHours}h estimated</span>
+                  <span>~{active.estimatedHours}h estimadas</span>
                   <Link
                     href={`/module/${active.id}`}
                     className="text-foreground hover:text-primary inline-flex items-center gap-1 font-medium"
                   >
-                    Open module <ArrowRight className="size-3" />
+                    Abrir módulo <ArrowRight className="size-3" />
                   </Link>
                 </div>
               </div>
@@ -132,12 +132,12 @@ export function HomeDashboard() {
       <Card>
         <CardHeader>
           <CardDescription className="tracking-widest uppercase">
-            Next up
+            Lo que sigue
           </CardDescription>
           {next ? (
             <CardTitle>{next.session.title}</CardTitle>
           ) : (
-            <CardTitle className="text-muted-foreground">All done</CardTitle>
+            <CardTitle className="text-muted-foreground">Todo listo</CardTitle>
           )}
         </CardHeader>
         <CardContent>
@@ -154,7 +154,7 @@ export function HomeDashboard() {
             />
           ) : (
             <p className="text-muted-foreground text-sm">
-              Nothing pending. Take a break.
+              Nada pendiente. Tomate un descanso.
             </p>
           )}
         </CardContent>
@@ -163,7 +163,7 @@ export function HomeDashboard() {
       <Card className="lg:col-span-3">
         <CardHeader>
           <CardDescription className="tracking-widest uppercase">
-            Recent notes
+            Notas recientes
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -171,7 +171,7 @@ export function HomeDashboard() {
             <div className="text-muted-foreground flex items-center gap-2 text-sm">
               <NotebookPen className="size-4 shrink-0" aria-hidden />
               <span>
-                Take notes on a session and they&apos;ll show up here.
+                Tomá notas en una sesión y van a aparecer acá.
               </span>
             </div>
           ) : (
@@ -183,7 +183,7 @@ export function HomeDashboard() {
                     className="hover:bg-muted/30 -mx-2 block rounded-md px-2 py-1"
                   >
                     <p className="text-muted-foreground text-xs">
-                      Module {String(entry.module.number).padStart(2, "0")} · {entry.module.title}
+                      Módulo {String(entry.module.number).padStart(2, "0")} · {entry.module.title}
                     </p>
                     <p className="mt-0.5 text-sm font-medium">
                       {entry.session.title}
@@ -230,32 +230,32 @@ function NextSessionBody({
   return (
     <>
       <p className="text-muted-foreground text-xs">
-        Module {String(moduleNumber).padStart(2, "0")} · Session {sessionNumber}
+        Módulo {String(moduleNumber).padStart(2, "0")} · Sesión {sessionNumber}
       </p>
       <p className="text-muted-foreground mt-1 text-xs">
-        in <span className="text-foreground">{moduleTitle}</span>
+        en <span className="text-foreground">{moduleTitle}</span>
       </p>
       <p className="mt-4 text-sm">
         <span className="font-medium tabular-nums">{pending}</span>{" "}
         <span className="text-muted-foreground">
-          item{pending === 1 ? "" : "s"} pending
+          {pending === 1 ? "ítem pendiente" : "ítems pendientes"}
         </span>{" "}
         <span className="text-muted-foreground">
-          ({concepts} concept{concepts === 1 ? "" : "s"} · {exercises}{" "}
-          exercise{exercises === 1 ? "" : "s"})
+          ({concepts} {concepts === 1 ? "concepto" : "conceptos"} ·{" "}
+          {exercises} {exercises === 1 ? "ejercicio" : "ejercicios"})
         </span>
       </p>
       <Link
         href={href}
         className="text-foreground hover:text-primary mt-4 inline-flex items-center gap-1 text-sm font-medium"
       >
-        Open session <ArrowRight className="size-3" />
+        Abrir sesión <ArrowRight className="size-3" />
       </Link>
     </>
   );
 }
 
-const RTF = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+const RTF = new Intl.RelativeTimeFormat("es", { numeric: "auto" });
 
 function formatRelative(iso: string): string {
   const t = new Date(iso).getTime();

@@ -17,7 +17,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const mod = modules.find((m) => m.id === id);
-  return { title: mod?.title ?? "Module" };
+  return { title: mod?.title ?? "Módulo" };
 }
 
 export default async function ModulePage({ params }: { params: Params }) {
@@ -31,11 +31,18 @@ export default async function ModulePage({ params }: { params: Params }) {
     0,
   );
 
+  const sessionsLabel =
+    mod.sessions.length === 1 ? "1 sesión" : `${mod.sessions.length} sesiones`;
+  const conceptsLabel =
+    totalConcepts === 1 ? "1 concepto" : `${totalConcepts} conceptos`;
+  const exercisesLabel =
+    totalExercises === 1 ? "1 ejercicio" : `${totalExercises} ejercicios`;
+
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-8 lg:px-8 lg:py-12">
       <header className="mb-8">
         <p className="text-primary text-xs font-medium tracking-widest uppercase">
-          Module {String(mod.number).padStart(2, "0")} · ~{mod.estimatedHours}h
+          Módulo {String(mod.number).padStart(2, "0")} · ~{mod.estimatedHours}h
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">
           {mod.title}
@@ -44,10 +51,9 @@ export default async function ModulePage({ params }: { params: Params }) {
           {mod.description}
         </p>
         <p className="text-muted-foreground mt-4 text-xs">
-          {mod.sessions.length} session
-          {mod.sessions.length === 1 ? "" : "s"}
+          {sessionsLabel}
           {totalConcepts + totalExercises > 0
-            ? ` · ${totalConcepts} concept${totalConcepts === 1 ? "" : "s"} · ${totalExercises} exercise${totalExercises === 1 ? "" : "s"}`
+            ? ` · ${conceptsLabel} · ${exercisesLabel}`
             : ""}
         </p>
       </header>

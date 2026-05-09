@@ -1,31 +1,34 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { modules } from "@/content/curriculum";
+import { SessionView } from "@/components/session/session-view";
 
 type Params = Promise<{ id: string; sessionId: string }>;
+
+export function generateStaticParams(): Array<{ id: string; sessionId: string }> {
+  return modules.flatMap((m) =>
+    m.sessions.map((s) => ({ id: m.id, sessionId: s.id })),
+  );
+}
 
 export async function generateMetadata({
   params,
 }: {
   params: Params;
 }): Promise<Metadata> {
-  const { sessionId } = await params;
-  return { title: `Session ${sessionId}` };
+  const { id, sessionId } = await params;
+  const mod = modules.find((m) => m.id === id);
+  const session = mod?.sessions.find((s) => s.id === sessionId);
+  return { title: session?.title ?? "Sesión" };
 }
 
 export default async function SessionPage({ params }: { params: Params }) {
   const { id, sessionId } = await params;
+  const mod = modules.find((m) => m.id === id);
+  if (!mod) notFound();
+  const session = mod.sessions.find((s) => s.id === sessionId);
+  if (!session) notFound();
 
-  return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-8 lg:px-8 lg:py-12">
-      <p className="text-primary text-xs font-medium tracking-widest uppercase">
-        Session
-      </p>
-      <h1 className="mt-2 text-3xl font-semibold tracking-tight">
-        {sessionId}
-      </h1>
-      <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-relaxed">
-        Module <code className="font-mono text-xs">{id}</code>. Phase 3
-        placeholder — concepts, exercises and the notes editor land in Phase 5.
-      </p>
-    </div>
-  );
+  return <SessionView module={mod} session={session} />;
 }

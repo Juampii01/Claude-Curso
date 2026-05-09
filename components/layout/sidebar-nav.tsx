@@ -13,8 +13,8 @@ type Props = {
 
 export function SidebarNav({ onNavigate }: Props) {
   return (
-    <nav aria-label="Primary" className="flex flex-col gap-6 px-3 py-4">
-      <Section title="Modules">
+    <nav aria-label="Principal" className="flex flex-col gap-6 px-3 py-4">
+      <Section title="Módulos">
         {modules.map((m) => (
           <SidebarLink
             key={m.id}
@@ -26,16 +26,16 @@ export function SidebarNav({ onNavigate }: Props) {
           />
         ))}
       </Section>
-      <Section title="Reference">
+      <Section title="Referencia">
         <SidebarLink
           href="/glossary"
-          label="Glossary"
+          label="Glosario"
           icon={BookText}
           onNavigate={onNavigate}
         />
         <SidebarLink
           href="/settings"
-          label="Settings"
+          label="Ajustes"
           icon={Settings}
           onNavigate={onNavigate}
         />

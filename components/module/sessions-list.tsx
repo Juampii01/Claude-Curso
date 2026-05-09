@@ -28,7 +28,7 @@ export function ModuleSessionsList({ moduleId }: Props) {
   if (mod.sessions.length === 0) {
     return (
       <p className="text-muted-foreground rounded-lg border border-dashed p-6 text-center text-sm">
-        Sessions for this module land in a later phase.
+        Las sesiones de este módulo se cargan en una fase posterior.
       </p>
     );
   }
@@ -69,7 +69,7 @@ function SessionRow({
     <li>
       <Link
         href={`/module/${moduleId}/session/${session.id}`}
-        aria-label={`Open ${session.title}`}
+        aria-label={`Abrir ${session.title}`}
         className={cn(
           "bg-card text-card-foreground hover:border-primary/40 group flex flex-col gap-3 rounded-xl border p-4 transition-colors",
           "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
@@ -78,7 +78,7 @@ function SessionRow({
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
             <p className="text-muted-foreground text-xs font-medium tracking-widest uppercase">
-              Session {session.number}
+              Sesión {session.number}
             </p>
             <p className="mt-1 truncate text-base font-medium">{session.title}</p>
           </div>
@@ -86,7 +86,7 @@ function SessionRow({
         </div>
 
         {isShell ? (
-          <p className="text-muted-foreground text-xs">Coming soon.</p>
+          <p className="text-muted-foreground text-xs">Próximamente.</p>
         ) : (
           <>
             <div className="bg-muted h-1 overflow-hidden rounded-full">
@@ -100,12 +100,13 @@ function SessionRow({
                 <span className="text-foreground tabular-nums">
                   {done}/{counts.total}
                 </span>{" "}
-                items · {counts.concepts} concept
-                {counts.concepts === 1 ? "" : "s"} · {counts.exercises} exercise
-                {counts.exercises === 1 ? "" : "s"}
+                ítems · {counts.concepts}{" "}
+                {counts.concepts === 1 ? "concepto" : "conceptos"} ·{" "}
+                {counts.exercises}{" "}
+                {counts.exercises === 1 ? "ejercicio" : "ejercicios"}
               </span>
               <span className="text-foreground inline-flex items-center gap-1 font-medium opacity-0 transition-opacity group-hover:opacity-100">
-                Open <ArrowRight className="size-3" />
+                Abrir <ArrowRight className="size-3" />
               </span>
             </div>
           </>
@@ -120,17 +121,17 @@ const STATUS_META: Record<
   { label: string; icon: LucideIcon; className: string }
 > = {
   "not-started": {
-    label: "Not started",
+    label: "No iniciada",
     icon: Circle,
     className: "bg-muted text-muted-foreground",
   },
   "in-progress": {
-    label: "In progress",
+    label: "En curso",
     icon: CircleDashed,
     className: "bg-primary/10 text-primary",
   },
   completed: {
-    label: "Completed",
+    label: "Completada",
     icon: CheckCircle2,
     className: "bg-primary text-primary-foreground",
   },
@@ -146,7 +147,7 @@ function StatusBadge({
   if (isShell) {
     return (
       <span className="bg-muted text-muted-foreground inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium tracking-widest uppercase">
-        Soon
+        Próximo
       </span>
     );
   }

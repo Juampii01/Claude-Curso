@@ -29,7 +29,7 @@ export function MobileNav() {
           <Button
             variant="ghost"
             size="icon-sm"
-            aria-label="Open navigation"
+            aria-label="Abrir navegación"
             className="lg:hidden"
           />
         }
@@ -40,7 +40,7 @@ export function MobileNav() {
         <SheetHeader className="border-b">
           <SheetTitle>Nova Learn</SheetTitle>
           <SheetDescription className="sr-only">
-            Primary navigation
+            Navegación principal
           </SheetDescription>
         </SheetHeader>
         <div className="flex-1 overflow-y-auto">

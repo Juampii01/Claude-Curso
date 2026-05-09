@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: "Nova Learn",
     template: "%s · Nova Learn",
   },
-  description: "Personal learning dashboard for mastering Claude.",
+  description: "Dashboard personal de aprendizaje para dominar Claude.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >

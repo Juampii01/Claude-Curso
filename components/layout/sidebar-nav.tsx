@@ -1,3 +1,5 @@
+"use client";
+
 import { BookOpen, BookText, Settings } from "lucide-react";
 
 import { modules } from "@/content/curriculum";

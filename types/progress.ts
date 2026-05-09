@@ -25,6 +25,8 @@ export type SessionProgress = {
   notes: string;
   /** ISO 8601 timestamp set when status flips to "completed". */
   completedAt?: string;
+  /** ISO 8601 timestamp updated whenever notes change. Drives "recent notes". */
+  notesUpdatedAt?: string;
 };
 
 export type Progress = {
